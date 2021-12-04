@@ -37,8 +37,8 @@ assert len(lines) % 6 == 0
 boards = [parse(lines[x:x+5]) for x in (range(1, len(lines), 6))]
 
 first_winner, first_balls = None, None
-last_verified = None
-for i, d in enumerate(draw_order):
+last_winner = None
+for i in range(len(draw_order)):
     balls = draw_order[0:1+i]
     verified = [winner(board, balls) for board in boards]
     if any(verified) and not first_winner:
@@ -46,7 +46,7 @@ for i, d in enumerate(draw_order):
         first_balls = balls
     if all(verified):
         break
-    last_verified = verified
+    last_winner = boards[verified.index(False)]
 
 print('part 1:', score(first_winner, first_balls))
-print('part 2:', score(boards[last_verified.index(False)], balls))
+print('part 2:', score(last_winner, balls))
