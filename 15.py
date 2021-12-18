@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 
-import math
 from dijkstar import Graph, find_path
-
-from collections import defaultdict
 
 maze = [[int(c) for c in line.strip()]
         for line in open('input-15.txt').readlines()]
